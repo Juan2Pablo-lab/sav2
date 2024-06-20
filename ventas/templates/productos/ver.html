@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Productos</title>
+</head>
+
+<body>
+    {% extends 'base.html' %}
+    {% block content %}
+    <br><br><br>
+    <div class="container-sm text-bg-dark p-3">
+        <div class="col-md-auto">
+            <h2>Productos</h2>
+            <div>
+                <div>
+                    <form action="{% url 'productos' %}" method="get">
+                        <div>
+                            {% csrf_token %}
+                            <label for="buscar" class="form-label">Buscar por nombre: </label>
+                            <input class="form-control" type="serch" name="buscar" id="buscar"
+                                placeholder="Ingrese el nombre del producto..."><br>
+                                <div class="col-auto">
+                                    <button class="btn btn-primary mb-3" type="submit">Buscar</button>
+                                </div>
+                        </div>
+                    </form>
+                    <form action="{% url 'buscar_codigo' %}" method="get" class="row g-3">
+                        <div>
+                            {% csrf_token %}
+                            <label for="buscar_codigo" class="form-label">Buscar por codigo</label>
+                            <input class="form-control" type="serch" name="buscar_codigo" id="buscar_codigo"
+                                placeholder="Ingrese el codigo del producto"><br>
+                            <div class="col-auto">
+                                <button class="btn btn-primary mb-3" type="submit">Buscar</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div><br>
+            <div>
+                <div>
+                    <table class="table table-success table-striped">
+                        <thead>
+                            <tr>
+                                <th>Codigo</th>
+                                <th>Nombre</th>
+                                <th>Stock</th>
+                                <th>Precio</th>
+                                <th>Categoria</th>
+                                <th>Editar</th>
+                                <th>Eliminar</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for resultado in resultados %}
+                            <tr>
+                                <td>{{resultado.codigo}}</td>
+                                <td>{{resultado.nombre}}</td>
+                                <td>{{resultado.stock}}</td>
+                                <td>{{resultado.precio}}</td>
+                                <td>{{resultado.categoria}}</td>
+                                <td><a href="{% url 'editar_producto' resultado.codigo %}">Editar</a></td>
+                                <td><a href="{% url 'eliminar_producto' resultado.codigo %}">Eliminar</a></td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% endblock %}
+</body>
+
+</html>

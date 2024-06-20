@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agregar</title>
+</head>
+<body>
+    {% extends 'base.html' %}
+    {% block content %}
+    <br><br><br>
+    <div class="row justify-content-md-center text-bg-dark p-3">
+        <div class="col-md-auto">
+            <h2>Agregar Categoria</h2><br>
+            <form method="POST" class="row g-3">
+                {% csrf_token %}
+                <div class="container-fluid">
+                    <label for="nombre" class="form-label">Nombre de la categoria: </label>
+                    <input class="form-control" type="text" name="nombre" id="nombre" required
+                        placeholder="Ingrese el nombre del producto">
+                </div>
+                <div class="container-fluid">
+                    <label for="identificador" class="form-label">Identificador: </label>
+                    <input class="form-control" type="text" name="identificador" id="identificador" required
+                        placeholder="Ingrese el nombre del producto">
+                </div>
+                <div class="container-fluid">
+                    <label class="form-label" for="descripcion">Descripcion: </label>
+                    <textarea name="descripcion" class="form-control" id="descripcion" rows="3"></textarea>
+                </div>
+                <div class="col-auto">
+                    <button class="btn btn-primary mb-3" type="submit">Agregar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    {% endblock %}
+</body>
+</html>

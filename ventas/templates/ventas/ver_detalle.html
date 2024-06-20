@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalle</title>
+</head>
+<body>
+    {% extends 'base.html' %}
+    {% block content %}
+    <br><br><br>
+    <div class="container-sm text-bg-dark p-3">
+        
+        <div class="col-md-auto">
+            <h2>Historial de Detalle Compras</h2>
+            <div>
+                <div>
+                    <table class="table table-success table-striped">
+                        <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Compra</th>
+                                <th>Producto</th>
+                                <th>Subtotal</th>
+                                <th>Descripcion</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for resultado in detalles %}
+                            <tr>
+                                <td>{{resultado.id}}</td>
+                                <td>{{resultado.compra}}</td>
+                                <td>{{resultado.producto}}</td>
+                                <td>{{resultado.subtotal}}</td>
+                                <td>{{resultado.descripcion}}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endblock %}
+</body>
+</html>

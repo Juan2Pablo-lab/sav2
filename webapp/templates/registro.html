@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro</title>
+</head>
+<body>
+    {% extends 'base.html' %}
+    {% block content %}
+    <br><br>
+    <br><br><br>
+    <div class="row justify-content-md-center text-bg-dark p-3">
+        <div class="col-md-auto">
+            <h2>Registrase</h2>
+            <form class="row g-3" method="post">
+                {% csrf_token %}
+                {{error}}
+                <div class="col-auto>
+                    <label for="username" class="form-label">Nombre de usuario: </label>
+                    <div class="input-group">
+                        <span class="input-group-text" >@</span>
+                        <input class="form-control" type="text" name="username" required id="username"
+                        placeholder="Ingrese el nombre de usuario...">
+                    </div>
+                </div>
+                <div class="col-auto>
+                    <label class="form-label" for="password1">Contraseña:</label>
+                    <div>
+                        <input class="form-control" type="password" name="password1" required id="password1"
+                            placeholder="Ingrese la contraseña...">
+                    </div>
+                </div>
+                <div class="col-auto>
+                    <label class="form-label" for="password2">Confirmar Contraseña:</label>
+                    <div>
+                        <input class="form-control" type="password" name="password2" required id="password2"
+                            placeholder="Ingrese la contraseña...">
+                    </div>
+                </div><br>
+                <div class="col-auto">
+                    <button class="btn btn-primary mb-3" type="submit">Iniciar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    {% endblock %}
+</body>
+</html>

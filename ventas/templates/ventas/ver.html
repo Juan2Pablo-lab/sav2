@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Historial Compras y Detalle Compras</title>
+</head>
+
+<body>
+    {% extends 'base.html' %}
+    {% block content %}
+    <br><br><br>
+    <div class="container-sm text-bg-dark p-3">
+        <div class="col-md-auto">
+            <h2>Historial de compras</h2>
+            <div>
+                <div>
+                    <table class="table table-success table-striped">
+                        <thead>
+                            <tr>
+                                <th>Numero de Compra</th>
+                                <th>Cliente</th>
+                                <th>Total</th>
+                                <th>Cantidad</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for resultado in compras %}
+                            <tr>
+                                <td>{{resultado.numero_compra}}</td>
+                                <td>{{resultado.cliente}}</td>
+                                <td>{{resultado.total}}</td>
+                                <td>{{resultado.cantidad}}</td>
+                                <td><a href="{% url 'ver_historial_detalle' resultado.numero_compra %}">Ver detalle Compras</a></td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endblock %}
+</body>
+
+</html>

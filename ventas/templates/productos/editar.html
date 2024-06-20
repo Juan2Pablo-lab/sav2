@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar</title>
+</head>
+<body>
+    {% extends 'base.html' %}
+    {% block content %}
+    <br><br><br>
+    <div class="row justify-content-md-center text-bg-dark p-3">
+        <div class="col-md-auto">
+            <h2>Editar Producto</h2><br>
+            <form method="POST" class="row g-3">
+                {% csrf_token %}
+                <div class="container-fluid">
+                    <label for="nombre" class="form-label">Nombre del Producto: </label>
+                    <input class="form-control" type="text" name="nombre" id="nombre" placeholder="{{producto.nombre}}">
+                    <div class="invalid-feedback">
+                        Porfavor Ingresa el nombre
+                    </div>
+                </div>
+                <div class="container-fluid">
+                    <label for="stock" class="form-label">Stock: </label>
+                    <input class="form-control" type="text" name="stock" id="stock" placeholder="{{producto.stock}}">
+                    <div class="invalid-feedback">
+                        Porfavor Ingresa el stock
+                    </div>
+                </div>
+                <div class="container-fluid">
+                    <label for="precio" class="form-label">Precio: </label>
+                    <input class="form-control" type="text" name="precio" id="precio" placeholder="{{producto.precio}}">
+                    <div class="invalid-feedback">
+                        Porfavor Ingresa el stock
+                    </div>
+                </div>
+                <div class="container-fluid">
+                    <label class="form-label" for="categoria">Categoria: </label>
+                    <select name="categoria" id="categoria" class="form-select" aria-label="Default select example">
+                        <option value="">--Selecciona--</option>
+                        {% for categoria in categorias %}
+                        <option value="{{categoria.id}}">{{categoria.nombre}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="col-auto">
+                    <button class="btn btn-primary mb-3" type="submit">Editar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    {% endblock %}
+</body>
+</html>

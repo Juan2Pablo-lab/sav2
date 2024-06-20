@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Venta</title>
+</head>
+
+<body>
+    {% extends 'base.html' %}
+    {% block content %}
+    <br><br><br>
+    <div class="container-sm">
+        <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas"
+            data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">Crear Cliente
+        </button>
+        <div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions" aria-labelledby="offcanvasWithBothOptionsLabel">
+            <div class="offcanvas-header">
+                <h5 class="offcanvas-title" id="offcanvasWithBothOptionsLabel">Creacion de un nuevo cliente</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body">
+                <form action="{% url 'cliente' %}" method="POST" class="row g-3">
+                    {% csrf_token %}
+                    <div class="container-fluid">
+                        <label class="form-label" for="dni">Dni del cliente</label>
+                        <input class="form-control" type="number" name="dni" required id="dni" placeholder="Ingrese el dni...">
+                    </div>
+                    <div class="container-fluid">
+                        <label for="nombre" class="form-label">Nombre del cliente: </label>
+                        <input class="form-control" type="text" name="nombre" id="nombre" required
+                            placeholder="Ingrese el nombre del cliente...">
+                    </div>
+                    <div class="container-fluid">
+                        <label for="apellido" class="form-label">Apellido del cliente: </label>
+                        <input class="form-control" type="text" name="apellido" id="apellido" required
+                            placeholder="Ingrese el apellido del cliente...">
+                    </div>
+                    <div class="container-fluid">
+                        <label for="correo" class="form-label">Correo del cliente: </label>
+                        <input class="form-control" type="email" name="correo" id="correo" required
+                            placeholder="Ingrese el correo del cliente...">
+                    </div>
+                    <div class="col-auto">
+                        <button class="btn btn-primary mb-3" type="submit">Agregar Cliente</button>
+                    </div>
+                </form>
+            </div>
+        </div><br><br><br>
+        <div class="container-sm text-bg-dark p-3">
+            <div class="col-md-auto">
+                <h2>Clientes</h2>
+                <div>
+                    <div>
+                        <form action="{% url 'buscar_cliente' %}" method="get">
+                            <div>
+                                {% csrf_token %}
+                                <label for="buscar" class="form-label">Buscar por dni: </label>
+                                <input class="form-control" type="serch" name="buscar" id="buscar"
+                                    placeholder="Ingrese el Dni del cliente..."><br>
+                                    <div class="col-auto">
+                                        <button class="btn btn-primary mb-3" type="submit">Buscar</button>
+                                    </div>
+                            </div>
+                        </form>
+                    </div>
+                </div><br>
+                <div>
+                    <div>
+                        <table class="table table-success table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Dni</th>
+                                    <th>Nombre</th>
+                                    <th>Apellido</th>
+                                    <th>correo</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for resultado in clientes %}
+                                <tr>
+                                    <td>{{resultado.dni}}</td>
+                                    <td>{{resultado.nombre}}</td>
+                                    <td>{{resultado.apellido}}</td>
+                                    <td>{{resultado.correo}}</td>
+                                    <td><a href="{% url 'venta' resultado.dni %}">Realizar venta</a></td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endblock %}
+</body>
+
+</html>

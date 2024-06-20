@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalle Venta</title>
+</head>
+<body>
+    {% extends 'base.html' %}
+    {% block content %}
+    <br><br><br>
+    <div class="container-sm">
+        <h3>Registrar Detalle de venta</h3><br><br>
+        <form method="POST" class="row g-3">
+            {% csrf_token %}
+            <div class="container-fluid">
+                <label for="compra" class="form-label">Compra: </label>
+                <select name="compra" id="compra" class="form-select" aria-label="Default select example">
+                    <option value="">--Compra--</option>
+                    {% for compra in compras %}
+                    <option value="{{compra.numero_compra}}">{{compra.cliente}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="container-fluid">
+                <label for="descripcion" class="form-label">Descripcion: </label>
+            <textarea name="descripcion" class="form-control" id="descripcion" rows="3"></textarea>
+            </div>
+            <div class="col-auto">
+                <button class="btn btn-primary mb-3" type="submit">Agregar Detalle Compra</button>
+            </div>
+        </form>
+    </div>
+    {% endblock %}
+</body>
+</html>

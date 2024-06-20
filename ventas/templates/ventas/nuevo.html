@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generar venta</title>
+</head>
+<body>
+    {% extends 'base.html' %}
+    {% block content %}
+    <br><br><br>
+    <div class="container-sm">
+        <h3>Registrar venta</h3><br><br>
+        <form method="POST" class="row g-3">
+            {% csrf_token %}
+            <div class="container-fluid">
+                <label for="cantidad" class="form-label">Cantidad: </label>
+                <input type="number" name="cantidad" id="cantidad" class="form-control">
+            </div>
+            <div class="col-auto">
+                <button class="btn btn-primary mb-3" type="submit">Agregar Detalle Compra</button>
+            </div>
+        </form>
+    </div>
+    {% endblock %}
+</body>
+</html>
